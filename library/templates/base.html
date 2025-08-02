@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Library Management System{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        background-color: #f5f5f5;
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+        background-color: #3e2a1e; /* Dark Brown */
+        color: #f5f5f5; /* Light background for text */
+        width: 200px;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar h2 {
+        margin-top: 0;
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .sidebar ul li {
+        margin: 10px 0;
+    }
+
+    .sidebar ul li a {
+        color: #f5f5f5;
+        text-decoration: none;
+        font-size: 1.1em;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #6f4e28; /* Lighter Brown for the background */
+        transition: background-color 0.3s ease;
+    }
+
+    .sidebar ul li a img {
+        margin-right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .sidebar ul li a:hover {
+        background-color: #3e2a1e; /* Darker Brown on hover */
+        color: #ffffff;
+    }
+
+    /* Content Styles */
+    .content {
+        margin-left: 250px;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #3e2a1e;
+        text-align: center;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        .content {
+            margin-left: 0;
+        }
+    }
+</style>
+<body>
+    <div class="sidebar">
+        <h2>Library Management System</h2>
+        <ul>
+            <li><a href="{% url 'dashboard' %}">
+                <img src="{% static 'images/dash.png' %}" alt="Dash Icon"> Dashboard</a>
+            </li>
+            <li><a href="{% url 'books' %}">
+                <img src="{% static 'images/books.png' %}" alt="Books Icon"> Books</a>
+            </li>
+            <li><a href="{% url 'add_book' %}">
+                <img src="{% static 'images/add_book.png' %}" alt="Add Book Icon"> Add Book</a>
+            </li>
+            <li><a href="{% url 'members' %}">
+                <img src="{% static 'images/members.png' %}" alt="Members Icon"> Members</a>
+            </li>
+            <li><a href="{% url 'manage_tables' %}">
+                <img src="{% static 'images/members.png' %}" alt="Members Icon"> Manage Tables</a>
+            </li>
+            
+
+           
+    
+        </ul>
+    </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

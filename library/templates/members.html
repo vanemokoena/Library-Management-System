@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto mt-8">
+    <h1 class="text-3xl font-semibold mb-6 text-gray-800 text-center">Member List</h1>
+
+    <!-- Search Bar Form -->
+    <form method="GET" action="{% url 'members' %}" class="search-form mb-6 flex justify-center">
+        <input 
+            type="text" 
+            name="q" 
+            placeholder="Search members..." 
+            value="{{ request.GET.q }}" 
+            class="search-input"
+        >
+        <button type="submit" class="btn-search">Search</button>
+    </form>
+
+    <!-- Add New Member Button -->
+    <div class="add-member-btn mb-6 text-center">
+        <a href="{% url 'add_member' %}" class="btn btn-green">Add New Member</a>
+    </div>
+
+    <!-- Member List -->
+    <ul class="member-list mx-auto">
+        {% for member in members %}
+            <li class="member-item mb-6">
+                <a href="{% url 'member_detail' member.id %}" class="member-link">
+                    {{ member.first_name }} {{ member.last_name }}
+                </a>
+            </li>
+        {% empty %}
+            <li class="text-gray-500">No members available.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<style>
+    /* Container Styling */
+    .container {
+        max-width: 700px;
+        padding: 2rem;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    /* Header Styling */
+    h1 {
+        font-size: 2.25rem;
+        font-weight: 600;
+        color: #1a202c;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Search Form Styles */
+    .search-form {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .search-input {
+        padding: 0.75rem;
+        width: 100%;
+        max-width: 350px;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.375rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition: box-shadow 0.2s ease;
+    }
+
+    .search-input:focus {
+        outline: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-search {
+        background-color: #6366f1; /* Indigo */
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.375rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-search:hover {
+        background-color: #4f46e5;
+    }
+
+    /* Add Member Button */
+    .add-member-btn {
+        display: flex;
+        justify-content: center;
+    }
+
+    .btn-green {
+        background-color: #10b981; /* Green */
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.375rem;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-green:hover {
+        background-color: #059669;
+    }
+
+    /* Member List Styles */
+    .member-list {
+        padding-left: 0;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    .member-item {
+        padding: 0.75rem;
+        background-color: #f9fafb;
+        border-radius: 0.375rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .member-item:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .member-link {
+        color: #3b82f6; /* Blue */
+        font-weight: 500;
+        text-decoration: none;
+        font-size: 1.125rem;
+        transition: color 0.3s ease;
+    }
+
+    .member-link:hover {
+        color: #2563eb;
+    }
+</style>
+{% endblock %}

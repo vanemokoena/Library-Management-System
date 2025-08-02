@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="flex justify-center items-center bg-gray-100 min-h-screen">
+    <div class="bg-white p-8 rounded shadow-md w-3/4 max-w-lg">
+        <h1 class="text-2xl mb-4 font-bold text-gray-800 text-center">Add a Book</h1>
+        <form method="POST" action="{% url 'add_book' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold rounded p-2 w-full mt-4">Add Book</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Page container */
+    .min-h-screen {
+        height: 100vh;
+    }
+
+    /* Form Container Styling */
+    .bg-white {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        width: 75%;
+        max-width: 600px;
+    }
+
+    /* Form header */
+    h1 {
+        font-size: 1.75rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #2d3748;
+    }
+
+    /* Button Styling */
+    .bg-blue-500 {
+        background-color: #3b82f6;
+        padding: 0.75rem;
+        border-radius: 0.375rem;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        text-align: center;
+    }
+
+    .bg-blue-500:hover {
+        background-color: #2563eb;
+    }
+
+    /* Form Input Styling */
+    form p {
+        margin-bottom: 1rem;
+    }
+
+    input[type="text"], textarea, select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #cbd5e0;
+        border-radius: 0.375rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Container styling */
+    .flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .p-8 {
+        padding: 2rem;
+    }
+
+    .shadow-md {
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+</style>
+{% endblock %}

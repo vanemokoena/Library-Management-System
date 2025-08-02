@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block content %}
+<h2>Data for {{ category.name }}</h2>
+
+<table class="data-table">
+    <thead>
+        <tr>
+            {% for field in fields %}
+                <th>{{ field }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in data_entries %}
+            <tr>
+                {% for field in fields %}
+                    <td>{{ entry|get_item:field }}</td> <!-- Use the custom filter to access dictionary keys -->
+                {% endfor %}
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="{{ fields|length }}">No data available.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'add_data' category.id %}" class="link-button">Add Data</a>
+
+<style>
+    /* Content Specific Table Styles */
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background-color: #fff;
+    }
+
+    .data-table th, .data-table td {
+        padding: 12px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .data-table th {
+        background-color: #3e2a1e; /* Dark Brown */
+        color: #f5f5f5;
+    }
+
+    .data-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .data-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Style the link button */
+    .link-button {
+        display: inline-block;
+        padding: 10px 15px;
+        margin-top: 20px;
+        background-color: #6f4e28;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .link-button:hover {
+        background-color: #3e2a1e;
+    }
+</style>
+{% endblock %}

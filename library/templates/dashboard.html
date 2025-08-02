@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-6">Dashboard</h1>
+
+
+
+
+<!-- Image below the cards -->
+<div class="text-center mb-4">
+    <img src="{% static 'images/home.png' %}" alt="Books Dashboard" class="mx-auto" style="width: 600px; height: 500px;">
+</div>
+
+
+<h2 class="text-2xl font-bold mb-4">Books Availability</h2>
+
+<table class="table-auto w-full mt-4">
+    <thead>
+        <tr>
+            <th class="px-4 py-2">Author</th>
+            <th class="px-4 py-2">Book</th>
+            <th class="px-4 py-2">Availability</th>
+            <th class="px-4 py-2">Available Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td class="border px-4 py-2">{{ book.author }}</td>
+            <td class="border px-4 py-2">{{ book.title }}</td>
+            <td class="border px-4 py-2">
+                {% if book.is_available %}
+                    <span class="text-green-500">Available</span>
+                {% else %}
+                    <span class="text-red-500">Out of Stock</span>
+                {% endif %}
+            </td>
+            <td class="border px-4 py-2">{{ book.stock }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
