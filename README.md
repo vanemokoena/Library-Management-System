@@ -2,6 +2,10 @@
 
 https://zethuvanessa8.pythonanywhere.com/
 
+
+<img width="1596" height="817" alt="Screenshot 2026-11-20 213620" src="https://github.com/user-attachments/assets/5f31e3c5-3c93-4961-8a1e-0dc1cee4e65e" />
+
+
 A Django-based web application to manage library operations like book cataloging, member tracking, borrowing and returns.
 
 
